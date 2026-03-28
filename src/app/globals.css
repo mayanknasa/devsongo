@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 4%;
+  --foreground: 0 0% 98%;
+  
+  /* Solar Engineering Palette - Industrial Luxury */
+  --primary: 38 92% 52%;    /* High-Luminosity Amber */
+  --secondary: 22 90% 48%;  /* Burnished Orange */
+  --accent: 45 93% 50%;     /* Rich Gold */
+  
+  /* Layered Depth System - No more flat black */
+  --zinc-950: 240 10% 3.9%;
+  --zinc-900: 240 6% 10%;
+  --zinc-800: 240 4% 16%;
+  --surface-1: var(--zinc-950);
+  --surface-2: var(--zinc-900);
+  --surface-3: var(--zinc-800);
+
+  /* Spacing Rhythm - Balanced for Scannability */
+  --radius: 2.5rem;
+
+  /* Sprint Typography - Absolute Hierarchy */
+  --fs-h1: clamp(4rem, 8vw + 2rem, 10rem);
+  --fs-h2: clamp(2.5rem, 5vw + 1.5rem, 5rem);
+  --fs-h3: clamp(1.75rem, 3vw + 1rem, 3rem);
+  --fs-h4: clamp(1.25rem, 2vw + 1rem, 1.75rem);
+  --fs-lead: clamp(1.1rem, 0.5vw + 1rem, 1.4rem);
+  --fs-body: 1rem;
+  --fs-label: 0.75rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans antialiased overflow-x-hidden selection:bg-primary/30 selection:text-white;
+  }
+  h1 { @apply text-[length:var(--fs-h1)] font-serif leading-[0.9] tracking-tight text-white mb-8; }
+  h2 { @apply text-[length:var(--fs-h2)] font-serif leading-[1] tracking-tight text-white mb-6; }
+  h3 { @apply text-[length:var(--fs-h3)] font-serif leading-[1.1] tracking-tight text-white mb-4; }
+  h4 { @apply text-[length:var(--fs-h4)] font-bold tracking-tight text-white; }
+  p { @apply text-foreground/60 leading-relaxed font-light; }
+}
+
+@layer components {
+  /* Hierarchy Helpers */
+  .text-lead { @apply text-[length:var(--fs-lead)] text-foreground/50 font-light leading-relaxed; }
+  .text-label { @apply text-[length:var(--fs-label)] font-bold uppercase tracking-[0.5em] text-accent block mb-4; }
+
+  /* High-Velocity CTA */
+  .btn-premium {
+    @apply relative px-12 py-5 rounded-full bg-accent text-black font-bold uppercase tracking-[0.2em] text-[11px] 
+    transition-all duration-300 ease-[0.33,1,0.68,1] hover:scale-105 hover:shadow-[0_0_40px_hsla(45,93%,50%,0.4)] active:scale-95 flex items-center gap-4 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply relative px-12 py-5 rounded-full border border-white/10 text-white font-bold uppercase tracking-[0.2em] text-[11px] 
+    transition-all duration-300 ease-[0.33,1,0.68,1] hover:bg-white/5 active:scale-95 flex items-center gap-4 cursor-pointer;
+  }
+  
+  /* Luminous Spatial Card - Master Variant */
+  .glass-card {
+    @apply relative p-10 bg-white/[0.03] backdrop-blur-2xl border border-white/[0.08] rounded-[var(--radius)] 
+           hover:border-white/[0.15] transition-all duration-300 ease-[0.33,1,0.68,1] hover:bg-white/[0.05]
+           shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] flex flex-col;
+  }
+
+  .section-padding {
+    @apply py-24 sm:py-32 lg:py-40;
+  }
+
+  .container-tight {
+    @apply max-w-7xl mx-auto px-6 sm:px-12 lg:px-16;
+  }
+}
+
+/* Atmospheric Texture - Inline for reliability */
+.noise-overlay {
+  @apply fixed inset-0 pointer-events-none z-[100] opacity-[0.05] mix-blend-overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  animation: shimmer 8s infinite linear;
+}
