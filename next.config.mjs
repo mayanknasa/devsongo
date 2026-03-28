@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configured for static export or normal SSR depending on user needs
-  // For standard agency site, defaults are mostly fine.
+  output: 'export',
+  basePath: '/devsongo',
+  assetPrefix: '/devsongo/',
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
