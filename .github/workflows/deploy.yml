@@ -54,7 +54,7 @@ jobs:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
-        uses: nextjs-github-pages-plugin/actions/setup-pages@v3
+        uses: actions/configure-pages@v5
         with:
           # Automatically inject basePath in your Next.js configuration file and disable
           # server side image optimization (WebP/AVIF outputs) as they are not supported
@@ -62,9 +62,6 @@ jobs:
           #
           # You can leverage the `static_exports` option to automatically generate
           # static HTML files.
-          #
-          # However, since we already configured it in next.config.mjs, we don't need it.
-          # But we will use it as a fallback.
           static_exports: true
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
